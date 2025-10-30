@@ -1,3 +1,4 @@
+import { RANK_TO_PRIZE_MAP } from "../src/constants/rankToPrizeMap.js";
 import Lotto from "../src/domains/Lotto.js";
 import Lottos from "../src/models/Lottos.js";
 
@@ -19,9 +20,9 @@ describe("Lottos 클래스", () => {
       });
     });
 
-    test("ranks(등수 통계)를 초기화한다.", () => {
+    test("등수 통계를 초기화한다.", () => {
       const lottosInstance = new Lottos(PURCASE_COUNT);
-      const ranks = lottosInstance.getRanks();
+      const ranks = lottosInstance._getRanks();
       expect(ranks).toEqual({
         "1st": 0,
         "2nd": 0,
@@ -31,10 +32,30 @@ describe("Lottos 클래스", () => {
       });
     });
 
-    test("totalReturn(총 수익률)을 초기화한다.", () => {
+    test("총 상금을 초기화한다.", () => {
       const lottosInstance = new Lottos(PURCASE_COUNT);
-      const totalReturn = lottosInstance._getTotalReturn();
-      expect(totalReturn).toBe(0);
+      const totalPrize = lottosInstance._getTotalPrize();
+      expect(totalPrize).toBe(0);
+    });
+  });
+
+  describe("win 메서드 테스트", () => {
+    test("순위에 따라 등수 통계를 업데이트한다.", () => {
+      Object.keys(RANK_TO_PRIZE_MAP).forEach((rank) => {
+        const lottosInstance = new Lottos(PURCASE_COUNT);
+        lottosInstance.win(rank);
+        const ranks = lottosInstance._getRanks();
+        expect(ranks[rank]).toBe(1);
+      });
+    });
+
+    test("순위에 따라 총 상금을 업데이트한다.", () => {
+      Object.keys(RANK_TO_PRIZE_MAP).forEach((rank) => {
+        const lottosInstance = new Lottos(PURCASE_COUNT);
+        lottosInstance.win(rank);
+        const totalPrize = lottosInstance._getTotalPrize();
+        expect(totalPrize).toBe(RANK_TO_PRIZE_MAP[rank]);
+      });
     });
   });
 

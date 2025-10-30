@@ -1,22 +1,28 @@
 import { Random } from "@woowacourse/mission-utils";
 import Lotto from "../domains/Lotto";
+import { RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
 
 class Lottos {
   #lottos;
   #ranks;
-  #totalReturn;
+  #totalPrize;
 
   constructor(purchaseCount) {
     this.#lottos = Array.from({ length: purchaseCount }, () =>
       this.#createLotto()
     );
     this.#ranks = { "1st": 0, "2nd": 0, "3rd": 0, "4th": 0, "5th": 0 };
-    this.#totalReturn = 0;
+    this.#totalPrize = 0;
   }
 
   #createLotto() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     return new Lotto(numbers);
+  }
+
+  win(rank) {
+    this.#ranks[rank] += 1;
+    this.#totalPrize += RANK_TO_PRIZE_MAP[rank];
   }
 
   format() {
@@ -32,8 +38,8 @@ class Lottos {
     return this.#ranks;
   }
 
-  _getTotalReturn() {
-    return this.#totalReturn;
+  _getTotalPrize() {
+    return this.#totalPrize;
   }
 }
 
