@@ -1,36 +1,38 @@
 import Lotto from "../src/domains/Lotto.js";
+import Lottos from "../src/models/Lottos.js";
 
-describe("Lotto 클래스", () => {
+describe("Lottos 클래스", () => {
   describe("생성자 테스트", () => {
-    test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
-      expect(() => {
-        new Lotto([1, 2, 3, 4, 5, 6, 7]);
-      }).toThrow("[ERROR]");
+    test("입력 개수만큼의 lottos 배열을 생성한다.", () => {
+      const lottosInstance = new Lottos(3);
+      const lottos = lottosInstance._getLottos();
+      expect(lottos).toHaveLength(3);
     });
 
-    test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
-      expect(() => {
-        new Lotto([1, 2, 3, 4, 5, 5]);
-      }).toThrow("[ERROR]");
+    test("lottos 배열은 Lotto 인스턴스로 구성된다.", () => {
+      const lottosInstance = new Lottos(3);
+      const lottos = lottosInstance._getLottos();
+      lottos.forEach((lotto) => {
+        expect(lotto).toBeInstanceOf(Lotto);
+      });
     });
 
-    test("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.", () => {
-      expect(() => {
-        new Lotto([0, 2, 3, 4, 5, 6]);
-      }).toThrow("[ERROR]");
+    test("ranks(등수 통계)를 초기화한다.", () => {
+      const lottosInstance = new Lottos(3);
+      const ranks = lottosInstance._getRanks();
+      expect(ranks).toEqual({
+        "1st": 0,
+        "2nd": 0,
+        "3rd": 0,
+        "4th": 0,
+        "5th": 0,
+      });
     });
 
-    test("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.", () => {
-      expect(() => {
-        new Lotto([1, 2, 3, 4, 5, 46]);
-      }).toThrow("[ERROR]");
-    });
-  });
-
-  describe("format 메서드 테스트", () => {
-    test("format 메서드 호출 시 출력 형식의 문자열을 반환한다.", () => {
-      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      expect(lotto.format()).toEqual("[1, 2, 3, 4, 5, 6]");
+    test("totalReturn(총 수익률)을 초기화한다.", () => {
+      const lottosInstance = new Lottos(3);
+      const totalReturn = lottosInstance._getTotalReturn();
+      expect(totalReturn).toBe(0);
     });
   });
 });
