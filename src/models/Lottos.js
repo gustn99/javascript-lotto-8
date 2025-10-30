@@ -19,6 +19,11 @@ class Lottos {
     return new Lotto(numbers);
   }
 
+  format() {
+    const formattedLottos = this.#lottos.map((lotto) => lotto.format());
+    return formattedLottos.join("\n");
+  }
+
   _getLottos() {
     return this.#lottos;
   }
