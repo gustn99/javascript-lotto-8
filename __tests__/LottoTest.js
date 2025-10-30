@@ -1,53 +1,36 @@
 import Lotto from "../src/domains/Lotto.js";
-import Lottos from "../src/models/Lottos.js";
 
-const PURCASE_COUNT = 3;
-
-describe("Lottos 클래스", () => {
+describe("Lotto 클래스", () => {
   describe("생성자 테스트", () => {
-    test("입력 개수만큼의 lottos 배열을 생성한다.", () => {
-      const lottosInstance = new Lottos(PURCASE_COUNT);
-      const lottos = lottosInstance._getLottos();
-      expect(lottos).toHaveLength(PURCASE_COUNT);
+    test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 6, 7]);
+      }).toThrow("[ERROR]");
     });
 
-    test("lottos 배열은 Lotto 인스턴스로 구성된다.", () => {
-      const lottosInstance = new Lottos(PURCASE_COUNT);
-      const lottos = lottosInstance._getLottos();
-      lottos.forEach((lotto) => {
-        expect(lotto).toBeInstanceOf(Lotto);
-      });
+    test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 5]);
+      }).toThrow("[ERROR]");
     });
 
-    test("ranks(등수 통계)를 초기화한다.", () => {
-      const lottosInstance = new Lottos(PURCASE_COUNT);
-      const ranks = lottosInstance._getRanks();
-      expect(ranks).toEqual({
-        "1st": 0,
-        "2nd": 0,
-        "3rd": 0,
-        "4th": 0,
-        "5th": 0,
-      });
+    test("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.", () => {
+      expect(() => {
+        new Lotto([0, 2, 3, 4, 5, 6]);
+      }).toThrow("[ERROR]");
     });
 
-    test("totalReturn(총 수익률)을 초기화한다.", () => {
-      const lottosInstance = new Lottos(PURCASE_COUNT);
-      const totalReturn = lottosInstance._getTotalReturn();
-      expect(totalReturn).toBe(0);
+    test("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.", () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 46]);
+      }).toThrow("[ERROR]");
     });
   });
 
   describe("format 메서드 테스트", () => {
-    test("모든 Lotto 객체의 format 결과를 줄바꿈으로 연결해 반환한다.", () => {
-      const lottosInstance = new Lottos(PURCASE_COUNT);
-      const formattedLottos = lottosInstance.format();
-      const formattedLottoArray = formattedLottos.split("\n");
-
-      expect(formattedLottoArray).toHaveLength(PURCASE_COUNT);
-      formattedLottoArray.forEach((str) => {
-        expect(str).toMatch(/\[\d+(, \d+){5}\]/);
-      });
+    test("배열을 문자열 형식으로 반환한다.", () => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(lotto.format()).toBe("[1, 2, 3, 4, 5, 6]");
     });
   });
 });
