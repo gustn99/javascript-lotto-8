@@ -1,7 +1,12 @@
 import { Random } from "@woowacourse/mission-utils";
-import Lotto from "../domains/Lotto";
 import { RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
 import { PURCHASE_UNIT } from "../constants/unit";
+import {
+  LOTTO_MAX_VALUE,
+  LOTTO_MIN_VALUE,
+  LOTTO_SIZE,
+} from "../constants/lotto";
+import Lotto from "../domains/Lotto";
 
 class Lottos {
   #lottos;
@@ -17,7 +22,10 @@ class Lottos {
   }
 
   #createLotto() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const start = LOTTO_MIN_VALUE;
+    const end = LOTTO_MAX_VALUE;
+    const size = LOTTO_SIZE;
+    const numbers = Random.pickUniqueNumbersInRange(start, end, size);
     return new Lotto(numbers);
   }
 
