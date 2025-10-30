@@ -25,6 +25,14 @@ class Lottos {
     this.#totalPrize += RANK_TO_PRIZE_MAP[rank];
   }
 
+  calculateTotalReturn() {
+    const purchaseCount = this.#lottos.length;
+    const purchaseAmount = purchaseCount * 1000;
+
+    const totalReturn = (this.#totalPrize / purchaseAmount).toFixed(2);
+    return totalReturn;
+  }
+
   format() {
     const formattedLottos = this.#lottos.map((lotto) => lotto.format());
     return formattedLottos.join("\n");

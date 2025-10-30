@@ -71,4 +71,21 @@ describe("Lottos 클래스", () => {
       });
     });
   });
+
+  describe("calculateTotalReturn 메서드 테스트", () => {
+    test("상금을 수익률 형태로 변환해 반환한다.", () => {
+      const rank = "1st";
+      const lottosInstance = new Lottos(PURCASE_COUNT);
+      lottosInstance.win(rank);
+
+      const purchaseAmount = PURCASE_COUNT * 1000;
+      const expectedTotalPrize = RANK_TO_PRIZE_MAP[rank];
+      const expectedTotalReturn = (expectedTotalPrize / purchaseAmount).toFixed(
+        2
+      );
+
+      const totalReturn = lottosInstance.calculateTotalReturn();
+      expect(totalReturn).toBe(expectedTotalReturn);
+    });
+  });
 });
