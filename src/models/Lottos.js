@@ -24,7 +24,7 @@ class Lottos {
     return formattedLottos.join("\n");
   }
 
-  _getLottos() {
+  getLottos() {
     return this.#lottos;
   }
 
