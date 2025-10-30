@@ -28,7 +28,7 @@ describe("Lottos 클래스", () => {
   });
 
   describe("format 메서드 테스트", () => {
-    test("format 메서드 호출 시 출력 형식의 문자열을 반환한다.", () => {
+    test("배열을 문자열 형식으로 반환한다.", () => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       expect(lotto.format()).toBe("[1, 2, 3, 4, 5, 6]");
     });
