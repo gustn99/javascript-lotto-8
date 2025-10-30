@@ -1,6 +1,7 @@
 import { Random } from "@woowacourse/mission-utils";
 import Lotto from "../domains/Lotto";
 import { RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
+import { PURCHASE_UNIT } from "../constants/unit";
 
 class Lottos {
   #lottos;
@@ -27,7 +28,7 @@ class Lottos {
 
   calculateTotalReturn() {
     const purchaseCount = this.#lottos.length;
-    const purchaseAmount = purchaseCount * 1000;
+    const purchaseAmount = purchaseCount * PURCHASE_UNIT;
 
     const totalReturn = (this.#totalPrize / purchaseAmount).toFixed(2);
     return totalReturn;
