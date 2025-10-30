@@ -25,7 +25,9 @@ class Lotto {
     }
   }
 
-  format() {}
+  format() {
+    return `[${this.#numbers.join(", ")}]`;
+  }
 }
 
 export default Lotto;

@@ -1,6 +1,6 @@
 import Lotto from "../src/domains/Lotto.js";
 
-describe("Lotto 클래스", () => {
+describe("Lottos 클래스", () => {
   describe("생성자 테스트", () => {
     test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
       expect(() => {
@@ -30,7 +30,7 @@ describe("Lotto 클래스", () => {
   describe("format 메서드 테스트", () => {
     test("format 메서드 호출 시 출력 형식의 문자열을 반환한다.", () => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      expect(lotto.format()).toEqual("[1, 2, 3, 4, 5, 6]");
+      expect(lotto.format()).toBe("[1, 2, 3, 4, 5, 6]");
     });
   });
 });
