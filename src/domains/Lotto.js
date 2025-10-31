@@ -38,6 +38,10 @@ class Lotto {
   format() {
     return `[${this.#numbers.join(", ")}]`;
   }
+
+  includes(num) {
+    return this.#numbers.includes(num);
+  }
 }
 
 export default Lotto;

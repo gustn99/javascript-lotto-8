@@ -33,4 +33,16 @@ describe("Lotto 클래스", () => {
       expect(lotto.format()).toBe("[1, 2, 3, 4, 5, 6]");
     });
   });
+
+  describe("includes 메서드 테스트", () => {
+    test("로또 인스턴스에 인자값이 포함되어 있으면 true를 반환한다.", () => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(lotto.includes(1)).toBe(true);
+    });
+
+    test("로또 인스턴스에 인자값이 포함되어 있지 않으면 false를 반환한다.", () => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(lotto.includes(7)).toBe(false);
+    });
+  });
 });
