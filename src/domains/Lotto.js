@@ -35,6 +35,10 @@ class Lotto {
     }
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   format() {
     return `[${this.#numbers.join(", ")}]`;
   }

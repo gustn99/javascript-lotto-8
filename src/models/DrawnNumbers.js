@@ -11,6 +11,15 @@ class DrawnNumbers {
     this.#bonusNumber = Number(bonusNumberString);
   }
 
+  matchCount(lotto) {
+    const lottoNumbers = lotto.getNumbers();
+    const count = lottoNumbers.reduce(
+      (total, num) => (this.#winningNumbers.includes(num) ? total + 1 : total),
+      0
+    );
+    return count;
+  }
+
   #createWinningNumbers(numbersString) {
     this.#validateWinningNumbers(numbersString);
     const winningNumberArray = numbersString.split(",").map(Number);
