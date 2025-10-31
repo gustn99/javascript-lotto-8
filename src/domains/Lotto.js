@@ -35,12 +35,15 @@ class Lotto {
     }
   }
 
-  getNumbers() {
-    return this.#numbers;
-  }
-
   format() {
     return `[${this.#numbers.join(", ")}]`;
+  }
+
+  compare(anotherLotto) {
+    return this.#numbers.reduce(
+      (total, num) => (anotherLotto.includes(num) ? total + 1 : total),
+      0
+    );
   }
 
   includes(num) {
