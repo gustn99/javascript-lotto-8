@@ -24,7 +24,7 @@ describe("Lottos 클래스", () => {
 
   describe("win 메서드 테스트", () => {
     test("순위에 따라 등수 통계를 업데이트한다.", () => {
-      Object.keys(RANK_TO_PRIZE_MAP).forEach((rank) => {
+      Object.values(RANK).forEach((rank) => {
         const lottosInstance = new Lottos(PURCHASE_COUNT);
         lottosInstance.win(rank);
         const ranks = lottosInstance._getRanks();
@@ -33,11 +33,11 @@ describe("Lottos 클래스", () => {
     });
 
     test("순위에 따라 총 상금을 업데이트한다.", () => {
-      Object.keys(RANK_TO_PRIZE_MAP).forEach((rank) => {
+      Object.entries(RANK_TO_PRIZE_MAP).forEach(([rank, prize]) => {
         const lottosInstance = new Lottos(PURCHASE_COUNT);
         lottosInstance.win(rank);
         const totalPrize = lottosInstance._getTotalPrize();
-        expect(totalPrize).toBe(RANK_TO_PRIZE_MAP[rank]);
+        expect(totalPrize).toBe(prize);
       });
     });
   });
@@ -57,18 +57,19 @@ describe("Lottos 클래스", () => {
 
   describe("calculateTotalReturn 메서드 테스트", () => {
     test("상금을 수익률 형태로 변환해 반환한다.", () => {
-      const rank = RANK["1ST"];
-      const lottosInstance = new Lottos(PURCHASE_COUNT);
-      lottosInstance.win(rank);
+      Object.entries(RANK_TO_PRIZE_MAP).forEach(([rank, prize]) => {
+        const lottosInstance = new Lottos(PURCHASE_COUNT);
+        lottosInstance.win(rank);
 
-      const purchaseAmount = PURCHASE_COUNT * PURCHASE_UNIT;
-      const expectedTotalPrize = RANK_TO_PRIZE_MAP[rank];
-      const expectedTotalReturn = (expectedTotalPrize / purchaseAmount).toFixed(
-        2
-      );
+        const purchaseAmount = PURCHASE_COUNT * PURCHASE_UNIT;
+        const expectedTotalPrize = prize;
+        const expectedTotalReturn = (
+          expectedTotalPrize / purchaseAmount
+        ).toFixed(2);
 
-      const totalReturn = lottosInstance.calculateTotalReturn();
-      expect(totalReturn).toBe(expectedTotalReturn);
+        const totalReturn = lottosInstance.calculateTotalReturn();
+        expect(totalReturn).toBe(expectedTotalReturn);
+      });
     });
   });
 });
