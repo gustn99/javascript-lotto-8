@@ -51,4 +51,42 @@ describe("DrawnNumbers 클래스", () => {
       }).toThrow("[ERROR]");
     });
   });
+
+  describe("calculateRank 메서드 테스트", () => {
+    test("당첨 번호와 로또 번호가 6개 모두 일치하는 경우 1등을 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 3, 4, 5, 6]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("1st");
+    });
+
+    test("당첨 번호와 로또 번호가 5개 일치하고, 로또 번호에 보너스 번호가 포함되어 있는 경우 2등을 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 3, 4, 5, 7]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("2nd");
+    });
+
+    test("당첨 번호와 로또 번호가 5개 일치하는 경우 3등을 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 3, 4, 5, 8]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("3rd");
+    });
+
+    test("당첨 번호와 로또 번호가 4개 일치하는 경우 4등을 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 3, 4, 7, 8]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("4th");
+    });
+
+    test("당첨 번호와 로또 번호가 3개 일치하는 경우 5등을 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 3, 7, 8, 9]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("5th");
+    });
+
+    test("당첨 번호와 로또 번호가 2개 이하 일치하는 경우 기타를 반환한다.", () => {
+      const lottoInstance = new Lotto([1, 2, 7, 8, 9, 10]);
+      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
+      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe("etc");
+    });
+  });
 });

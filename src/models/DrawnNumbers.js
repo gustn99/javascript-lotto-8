@@ -11,6 +11,18 @@ class DrawnNumbers {
     this.#bonusNumber = Number(bonusNumberString);
   }
 
+  calculateRank(lotto) {
+    const matchCount = lotto.compare(this.#winningNumbers);
+    const hasBonus = lotto.includes(this.#bonusNumber);
+
+    if (matchCount === 6) return "1st";
+    if (matchCount === 5 && hasBonus) return "2nd";
+    if (matchCount === 5) return "3rd";
+    if (matchCount === 4) return "4th";
+    if (matchCount === 3) return "5th";
+    return "etc";
+  }
+
   #createWinningNumbers(numbersString) {
     this.#validateWinningNumbers(numbersString);
     const winningNumberArray = numbersString.split(",").map(Number);
