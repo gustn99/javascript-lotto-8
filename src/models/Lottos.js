@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import { RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
+import { RANK, RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
 import { PURCHASE_UNIT } from "../constants/unit";
 import {
   LOTTO_MAX_VALUE,
@@ -17,7 +17,7 @@ class Lottos {
     this.#lottos = Array.from({ length: purchaseCount }, () =>
       this.#createLotto()
     );
-    this.#ranks = { "1st": 0, "2nd": 0, "3rd": 0, "4th": 0, "5th": 0 };
+    this.#ranks = this.#createRankCount();
     this.#totalPrize = 0;
   }
 
@@ -27,6 +27,10 @@ class Lottos {
     const size = LOTTO_SIZE;
     const numbers = Random.pickUniqueNumbersInRange(start, end, size);
     return new Lotto(numbers);
+  }
+
+  #createRankCount() {
+    return Object.values(RANK).reduce((acc, cur) => ({ ...acc, [cur]: 0 }), {});
   }
 
   win(rank) {

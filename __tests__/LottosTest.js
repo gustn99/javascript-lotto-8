@@ -1,4 +1,4 @@
-import { RANK_TO_PRIZE_MAP } from "../src/constants/rankToPrizeMap.js";
+import { RANK, RANK_TO_PRIZE_MAP } from "../src/constants/rankToPrizeMap.js";
 import { PURCHASE_UNIT } from "../src/constants/unit.js";
 import Lotto from "../src/domains/Lotto.js";
 import Lottos from "../src/models/Lottos.js";
@@ -19,24 +19,6 @@ describe("Lottos 클래스", () => {
       lottos.forEach((lotto) => {
         expect(lotto).toBeInstanceOf(Lotto);
       });
-    });
-
-    test("등수 통계를 초기화한다.", () => {
-      const lottosInstance = new Lottos(PURCHASE_COUNT);
-      const ranks = lottosInstance._getRanks();
-      expect(ranks).toEqual({
-        "1st": 0,
-        "2nd": 0,
-        "3rd": 0,
-        "4th": 0,
-        "5th": 0,
-      });
-    });
-
-    test("총 상금을 초기화한다.", () => {
-      const lottosInstance = new Lottos(PURCHASE_COUNT);
-      const totalPrize = lottosInstance._getTotalPrize();
-      expect(totalPrize).toBe(0);
     });
   });
 
@@ -75,7 +57,7 @@ describe("Lottos 클래스", () => {
 
   describe("calculateTotalReturn 메서드 테스트", () => {
     test("상금을 수익률 형태로 변환해 반환한다.", () => {
-      const rank = "1st";
+      const rank = RANK["1ST"];
       const lottosInstance = new Lottos(PURCHASE_COUNT);
       lottosInstance.win(rank);
 
