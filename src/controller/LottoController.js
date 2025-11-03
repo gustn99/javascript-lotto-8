@@ -62,11 +62,18 @@ class LottoController {
     const ranks = lottos.getRanks();
     const totalReturn = lottos.calculateTotalReturn();
 
-    const formattedRankResult = this.#formatter.formatRankResult(ranks);
-    const formattedTotalReturn = this.#formatter.formatTotalReturn(totalReturn);
-
     this.#outputView.print("당첨 통계");
+    this.#printRankResult(ranks);
+    this.#printTotalReturn(totalReturn);
+  }
+
+  #printRankResult(ranks) {
+    const formattedRankResult = this.#formatter.formatRankResult(ranks);
     this.#outputView.print(formattedRankResult);
+  }
+
+  #printTotalReturn(totalReturn) {
+    const formattedTotalReturn = this.#formatter.formatTotalReturn(totalReturn);
     this.#outputView.print(formattedTotalReturn);
   }
 }
