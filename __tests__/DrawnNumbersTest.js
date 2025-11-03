@@ -3,8 +3,8 @@ import {
   WINNING_NUMBER_ERROR_MESSAGES,
 } from "../src/constants/errorMessages.js";
 import { RANK } from "../src/constants/rank.js";
-import Lotto from "../src/domains/Lotto";
-import DrawnNumbers from "../src/models/DrawnNumbers";
+import Lotto from "../src/domains/Lotto.js";
+import DrawnNumbers from "../src/models/DrawnNumbers.js";
 
 describe("DrawnNumbers 클래스", () => {
   describe("생성자 테스트", () => {
