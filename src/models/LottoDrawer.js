@@ -1,4 +1,4 @@
-import DrawnNumbers from "./DrawnNumbers";
+import DrawnNumbers from "./DrawnNumbers.js";
 
 class LottoDrawer {
   #lottos;

@@ -1,12 +1,12 @@
 import { Random } from "@woowacourse/mission-utils";
-import { RANK, RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap";
-import { PURCHASE_UNIT } from "../constants/unit";
+import { RANK, RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap.js";
+import { PURCHASE_UNIT } from "../constants/unit.js";
 import {
   LOTTO_MAX_VALUE,
   LOTTO_MIN_VALUE,
   LOTTO_SIZE,
-} from "../constants/lotto";
-import Lotto from "../domains/Lotto";
+} from "../constants/lotto.js";
+import Lotto from "../domains/Lotto.js";
 
 class Lottos {
   #lottos;

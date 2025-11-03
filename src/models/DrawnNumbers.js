@@ -1,5 +1,5 @@
-import { LOTTO_MAX_VALUE, LOTTO_MIN_VALUE } from "../constants/lotto";
-import Lotto from "../domains/Lotto";
+import { LOTTO_MAX_VALUE, LOTTO_MIN_VALUE } from "../constants/lotto.js";
+import Lotto from "../domains/Lotto.js";
 
 class DrawnNumbers {
   #winningNumbers;
