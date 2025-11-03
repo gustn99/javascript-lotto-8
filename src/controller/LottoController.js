@@ -1,3 +1,4 @@
+import { INPUT_MESSAGES } from "../constants/inputMessages.js";
 import { PURCHASE_UNIT } from "../constants/unit.js";
 import LottoDrawer from "../models/LottoDrawer.js";
 import Lottos from "../models/Lottos.js";
@@ -18,7 +19,7 @@ class LottoController {
 
   async run() {
     const purchaseAmount = await this.#inputView.readLineAsync(
-      "구입금액을 입력해 주세요."
+      INPUT_MESSAGES.PURCHASE_AMOUNT
     );
     this.#validatePurchaseAmount(purchaseAmount);
 
@@ -27,14 +28,14 @@ class LottoController {
     this.#printPurchaseCount(purchaseCount);
     this.#printLottos(lottos);
 
-    const winningNumberString = await this.#inputView.readLineAsync(
-      "당첨 번호를 입력해 주세요."
+    const winningNumber = await this.#inputView.readLineAsync(
+      INPUT_MESSAGES.WINNING_NUMBER
     );
-    const bonusNumberString = await this.#inputView.readLineAsync(
-      "보너스 번호를 입력해 주세요."
+    const bonusNumber = await this.#inputView.readLineAsync(
+      INPUT_MESSAGES.BONUS_NUMBER
     );
 
-    const lottoDrawer = new LottoDrawer(winningNumberString, bonusNumberString);
+    const lottoDrawer = new LottoDrawer(winningNumber, bonusNumber);
     lottoDrawer.run(lottos);
     this.#printResult(lottos);
   }
