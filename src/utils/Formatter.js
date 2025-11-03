@@ -1,7 +1,7 @@
 import {
   RANK_TO_MATCH_STRING_MAP,
   RANK_TO_PRIZE_MAP,
-} from "../constants/rankToPrizeMap.js";
+} from "../constants/rank.js";
 
 class Formatter {
   formatLottoNumbers(numbers) {

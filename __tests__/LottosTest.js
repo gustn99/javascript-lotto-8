@@ -1,4 +1,4 @@
-import { RANK, RANK_TO_PRIZE_MAP } from "../src/constants/rankToPrizeMap.js";
+import { RANK, RANK_TO_PRIZE_MAP } from "../src/constants/rank.js";
 import { PURCHASE_UNIT } from "../src/constants/unit.js";
 import Lotto from "../src/domains/Lotto.js";
 import Lottos from "../src/models/Lottos.js";

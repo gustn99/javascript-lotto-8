@@ -1,9 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import {
-  RANK,
-  RANK_TO_MATCH_STRING_MAP,
-  RANK_TO_PRIZE_MAP,
-} from "../constants/rankToPrizeMap.js";
+import { RANK, RANK_TO_PRIZE_MAP } from "../constants/rank.js";
 import { PURCHASE_UNIT } from "../constants/unit.js";
 import {
   LOTTO_MAX_VALUE,

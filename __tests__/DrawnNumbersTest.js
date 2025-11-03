@@ -1,4 +1,4 @@
-import { RANK } from "../src/constants/rankToPrizeMap";
+import { RANK } from "../src/constants/rank.js";
 import Lotto from "../src/domains/Lotto";
 import DrawnNumbers from "../src/models/DrawnNumbers";
 

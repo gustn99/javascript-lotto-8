@@ -4,7 +4,6 @@ export const RANK = {
   "3RD": "3rd",
   "4TH": "4th",
   "5TH": "5th",
-  ETC: "etc",
 };
 
 export const RANK_TO_PRIZE_MAP = {
