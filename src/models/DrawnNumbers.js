@@ -20,7 +20,7 @@ class DrawnNumbers {
     if (matchCount === 5) return "3rd";
     if (matchCount === 4) return "4th";
     if (matchCount === 3) return "5th";
-    return "etc";
+    return undefined;
   }
 
   #createWinningNumbers(numbersString) {

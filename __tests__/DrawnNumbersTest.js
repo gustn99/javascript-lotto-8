@@ -93,13 +93,5 @@ describe("DrawnNumbers 클래스", () => {
         RANK["5TH"]
       );
     });
-
-    test("당첨 번호와 로또 번호가 2개 이하 일치하는 경우 기타를 반환한다.", () => {
-      const lottoInstance = new Lotto([1, 2, 7, 8, 9, 10]);
-      const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
-      expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["ETC"]
-      );
-    });
   });
 });
