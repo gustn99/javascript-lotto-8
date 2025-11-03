@@ -14,22 +14,18 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== LOTTO_SIZE) {
+    if (numbers.length !== LOTTO_SIZE)
       throw new Error(LOTTO_ERROR_MESSAGES.LENGTH);
-    }
 
     const numberSet = new Set(numbers);
-    if (numbers.length > numberSet.size) {
+    if (numbers.length > numberSet.size)
       throw new Error(LOTTO_ERROR_MESSAGES.UNIQUE);
-    }
 
-    if (numbers.some((num) => num < LOTTO_MIN_VALUE)) {
+    if (numbers.some((num) => num < LOTTO_MIN_VALUE))
       throw new Error(LOTTO_ERROR_MESSAGES.MIN_VALUE);
-    }
 
-    if (numbers.some((num) => num > LOTTO_MAX_VALUE)) {
+    if (numbers.some((num) => num > LOTTO_MAX_VALUE))
       throw new Error(LOTTO_ERROR_MESSAGES.MAX_VALUE);
-    }
   }
 
   compare(anotherLotto) {
