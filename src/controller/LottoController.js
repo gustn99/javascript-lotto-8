@@ -1,3 +1,4 @@
+import { PURCHASE_ERROR_MESSAGES } from "../constants/errorMessages.js";
 import { INPUT_MESSAGES } from "../constants/inputMessages.js";
 import { PURCHASE_UNIT } from "../constants/unit.js";
 import LottoDrawer from "../models/LottoDrawer.js";
@@ -40,8 +41,12 @@ class LottoController {
   }
 
   #validatePurchaseAmount(purchaseAmount) {
+    if (purchaseAmount === "") {
+      throw new Error(PURCHASE_ERROR_MESSAGES.NONEMPTY);
+    }
+
     if (purchaseAmount % PURCHASE_UNIT !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
+      throw new Error(PURCHASE_ERROR_MESSAGES.UNIT);
     }
   }
 

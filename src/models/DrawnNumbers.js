@@ -1,3 +1,7 @@
+import {
+  BONUS_NUMBER_ERROR_MESSAGES,
+  WINNING_NUMBER_ERROR_MESSAGES,
+} from "../constants/errorMessages.js";
 import { LOTTO_MAX_VALUE, LOTTO_MIN_VALUE } from "../constants/lotto.js";
 import Lotto from "../domains/Lotto.js";
 
@@ -32,37 +36,33 @@ class DrawnNumbers {
   #validateWinningNumbers(numbersString) {
     const trimmedString = numbersString.trim();
     if (trimmedString === "") {
-      throw new Error("[ERROR] 당첨 번호를 입력해 주세요.");
+      throw new Error(WINNING_NUMBER_ERROR_MESSAGES.NONEMPTY);
     }
 
     const format = /^\s*\d+(\s*,\s*\d+)*\s*$/;
     if (!format.test(trimmedString)) {
-      throw new Error("[ERROR] 당첨 번호는 쉼표로 구분되어야 합니다.");
+      throw new Error(WINNING_NUMBER_ERROR_MESSAGES.DELIMITER);
     }
   }
 
   #validateBonusNumber(bonusNumberString) {
     const trimmedString = bonusNumberString.trim();
     if (trimmedString === "") {
-      throw new Error("[ERROR] 보너스 번호를 입력해 주세요.");
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGES.NONEMPTY);
     }
 
     const bonusNumber = Number(trimmedString);
 
     if (bonusNumber < LOTTO_MIN_VALUE) {
-      throw new Error(
-        `[ERROR] 로또 번호는 ${LOTTO_MIN_VALUE}에서 ${LOTTO_MAX_VALUE} 사이의 숫자여야 합니다.`
-      );
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGES.MIN_VALUE);
     }
 
     if (bonusNumber > LOTTO_MAX_VALUE) {
-      throw new Error(
-        `[ERROR] 로또 번호는 ${LOTTO_MIN_VALUE}에서 ${LOTTO_MAX_VALUE} 사이의 숫자여야 합니다.`
-      );
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGES.MAX_VALUE);
     }
 
     if (this.#winningNumbers.includes(bonusNumber)) {
-      throw new Error("[ERROR] 이미 당첨 번호에 포함된 번호입니다.");
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGES.UNIQUE);
     }
   }
 }
