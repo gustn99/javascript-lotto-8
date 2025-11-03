@@ -65,7 +65,7 @@ describe("Lottos 클래스", () => {
         const expectedTotalPrize = prize;
         const expectedTotalReturn = (
           expectedTotalPrize / purchaseAmount
-        ).toFixed(2);
+        ).toFixed(1);
 
         const totalReturn = lottosInstance.calculateTotalReturn();
         expect(totalReturn).toBe(expectedTotalReturn);

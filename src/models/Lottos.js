@@ -46,7 +46,7 @@ class Lottos {
     const purchaseCount = this.#lottos.length;
     const purchaseAmount = purchaseCount * PURCHASE_UNIT;
 
-    const totalReturn = (this.#totalPrize / purchaseAmount).toFixed(2);
+    const totalReturn = (this.#totalPrize / purchaseAmount).toFixed(1);
     return totalReturn;
   }
 
