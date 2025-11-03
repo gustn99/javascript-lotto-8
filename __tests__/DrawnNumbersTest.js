@@ -62,7 +62,7 @@ describe("DrawnNumbers 클래스", () => {
       const lottoInstance = new Lotto([1, 2, 3, 4, 5, 6]);
       const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
       expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["1ST"]
+        RANK.FIRST
       );
     });
 
@@ -70,7 +70,7 @@ describe("DrawnNumbers 클래스", () => {
       const lottoInstance = new Lotto([1, 2, 3, 4, 5, 7]);
       const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
       expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["2ND"]
+        RANK.SECOND
       );
     });
 
@@ -78,7 +78,7 @@ describe("DrawnNumbers 클래스", () => {
       const lottoInstance = new Lotto([1, 2, 3, 4, 5, 8]);
       const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
       expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["3RD"]
+        RANK.THIRD
       );
     });
 
@@ -86,7 +86,7 @@ describe("DrawnNumbers 클래스", () => {
       const lottoInstance = new Lotto([1, 2, 3, 4, 7, 8]);
       const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
       expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["4TH"]
+        RANK.FOURTH
       );
     });
 
@@ -94,7 +94,7 @@ describe("DrawnNumbers 클래스", () => {
       const lottoInstance = new Lotto([1, 2, 3, 7, 8, 9]);
       const drawnNumbersInstance = new DrawnNumbers("1,2,3,4,5,6", "7");
       expect(drawnNumbersInstance.calculateRank(lottoInstance)).toBe(
-        RANK["5TH"]
+        RANK.FIFTH
       );
     });
   });
