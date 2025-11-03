@@ -3,7 +3,13 @@ import Lotto from "../src/domains/Lotto.js";
 
 describe("Lotto 클래스", () => {
   describe("생성자 테스트", () => {
-    test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
+    test("로또 번호의 개수가 6개 미만이면 예외가 발생한다.", () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5]);
+      }).toThrow(LOTTO_ERROR_MESSAGES.LENGTH);
+    });
+
+    test("로또 번호의 개수가 6개를 넘어가면 예외가 발생한다.", () => {
       expect(() => {
         new Lotto([1, 2, 3, 4, 5, 6, 7]);
       }).toThrow(LOTTO_ERROR_MESSAGES.LENGTH);
