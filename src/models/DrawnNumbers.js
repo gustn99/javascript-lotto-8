@@ -3,6 +3,7 @@ import {
   WINNING_NUMBER_ERROR_MESSAGES,
 } from "../constants/errorMessages.js";
 import { LOTTO_MAX_VALUE, LOTTO_MIN_VALUE } from "../constants/lotto.js";
+import { RANK } from "../constants/rank.js";
 import Lotto from "../domains/Lotto.js";
 
 class DrawnNumbers {
@@ -19,11 +20,11 @@ class DrawnNumbers {
     const matchCount = lotto.compare(this.#winningNumbers);
     const hasBonus = lotto.includes(this.#bonusNumber);
 
-    if (matchCount === 6) return "1st";
-    if (matchCount === 5 && hasBonus) return "2nd";
-    if (matchCount === 5) return "3rd";
-    if (matchCount === 4) return "4th";
-    if (matchCount === 3) return "5th";
+    if (matchCount === 6) return RANK.FIRST;
+    if (matchCount === 5 && hasBonus) return RANK.SECOND;
+    if (matchCount === 5) return RANK.THIRD;
+    if (matchCount === 4) return RANK.FOURTH;
+    if (matchCount === 3) return RANK.FIFTH;
     return undefined;
   }
 
