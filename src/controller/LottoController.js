@@ -82,7 +82,9 @@ class LottoController {
     const ranks = lottos.getRanks();
     const totalReturn = lottos.calculateTotalReturn();
 
+    this.#outputView.print();
     this.#outputView.print("당첨 통계");
+    this.#outputView.print("---");
     this.#printRankResult(ranks);
     this.#printTotalReturn(totalReturn);
   }
