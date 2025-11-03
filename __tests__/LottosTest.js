@@ -27,7 +27,7 @@ describe("Lottos 클래스", () => {
       Object.values(RANK).forEach((rank) => {
         const lottosInstance = new Lottos(PURCHASE_COUNT);
         lottosInstance.win(rank);
-        const ranks = lottosInstance._getRanks();
+        const ranks = lottosInstance.getRanks();
         expect(ranks[rank]).toBe(1);
       });
     });
@@ -38,19 +38,6 @@ describe("Lottos 클래스", () => {
         lottosInstance.win(rank);
         const totalPrize = lottosInstance._getTotalPrize();
         expect(totalPrize).toBe(prize);
-      });
-    });
-  });
-
-  describe("format 메서드 테스트", () => {
-    test("모든 Lotto 객체의 format 결과를 줄바꿈으로 연결해 반환한다.", () => {
-      const lottosInstance = new Lottos(PURCHASE_COUNT);
-      const formattedLottos = lottosInstance.format();
-      const formattedLottoArray = formattedLottos.split("\n");
-
-      expect(formattedLottoArray).toHaveLength(PURCHASE_COUNT);
-      formattedLottoArray.forEach((str) => {
-        expect(str).toMatch(/\[\d+(, \d+){5}\]/);
       });
     });
   });

@@ -50,27 +50,11 @@ class Lottos {
     return totalReturn;
   }
 
-  formatResult() {
-    return Object.entries(RANK_TO_PRIZE_MAP)
-      .map(
-        ([rank, prize]) =>
-          `${RANK_TO_MATCH_STRING_MAP[rank]} (${prize.toLocaleString()}원) - ${
-            this.#ranks[rank]
-          }개`
-      )
-      .join("\n");
-  }
-
-  format() {
-    const formattedLottos = this.#lottos.map((lotto) => lotto.format());
-    return formattedLottos.join("\n");
-  }
-
   getLottos() {
     return this.#lottos;
   }
 
-  _getRanks() {
+  getRanks() {
     return this.#ranks;
   }
 

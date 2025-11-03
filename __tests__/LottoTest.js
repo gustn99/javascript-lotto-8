@@ -27,13 +27,6 @@ describe("Lotto 클래스", () => {
     });
   });
 
-  describe("format 메서드 테스트", () => {
-    test("배열을 문자열 형식으로 반환한다.", () => {
-      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      expect(lotto.format()).toBe("[1, 2, 3, 4, 5, 6]");
-    });
-  });
-
   describe("compare 메서드 테스트", () => {
     test("두 로또 인스턴스 사이의 공통 원소 개수를 반환한다.", () => {
       const lotto1 = new Lotto([1, 3, 5, 7, 9, 11]);

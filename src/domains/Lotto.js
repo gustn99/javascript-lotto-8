@@ -35,10 +35,6 @@ class Lotto {
     }
   }
 
-  format() {
-    return `[${this.#numbers.join(", ")}]`;
-  }
-
   compare(anotherLotto) {
     return this.#numbers.reduce(
       (total, num) => (anotherLotto.includes(num) ? total + 1 : total),
@@ -48,6 +44,10 @@ class Lotto {
 
   includes(num) {
     return this.#numbers.includes(num);
+  }
+
+  getNumbers() {
+    return this.#numbers;
   }
 }
 

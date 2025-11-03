@@ -1,16 +1,19 @@
 import { PURCHASE_UNIT } from "../constants/unit.js";
 import LottoDrawer from "../models/LottoDrawer.js";
 import Lottos from "../models/Lottos.js";
+import Formatter from "../utils/Formatter.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 
 class LottoController {
   #inputView;
   #outputView;
+  #formatter;
 
   constructor() {
     this.#inputView = new InputView();
     this.#outputView = new OutputView();
+    this.#formatter = new Formatter();
   }
 
   async run() {
@@ -21,7 +24,7 @@ class LottoController {
 
     const purchaseCount = purchaseAmount / PURCHASE_UNIT;
     const lottos = new Lottos(purchaseCount);
-    this.#outputView.print(`${purchaseAmount}개를 구매했습니다.`);
+    this.#printPurchaseCount(purchaseCount);
     this.#printLottos(lottos);
 
     const winningNumberString = await this.#inputView.readLineAsync(
@@ -42,17 +45,27 @@ class LottoController {
     }
   }
 
+  #printPurchaseCount(purchaseCount) {
+    const formattedPurchaseCount =
+      this.#formatter.formatPurchaseCount(purchaseCount);
+    this.#outputView.print(formattedPurchaseCount);
+  }
+
   #printLottos(lottos) {
-    const formattedLottos = lottos.format();
+    const lottoArray = lottos.getLottos();
+    const formattedLottos = this.#formatter.formatLottos(lottoArray);
     this.#outputView.print(formattedLottos);
   }
 
   #printResult(lottos) {
-    const formattedRanks = lottos.formatResult();
+    const ranks = lottos.getRanks();
     const totalReturn = lottos.calculateTotalReturn();
-    const formattedTotalReturn = `총 수익률은 ${totalReturn}%입니다.`;
+
+    const formattedRankResult = this.#formatter.formatRankResult(ranks);
+    const formattedTotalReturn = this.#formatter.formatTotalReturn(totalReturn);
+
     this.#outputView.print("당첨 통계");
-    this.#outputView.print(formattedRanks);
+    this.#outputView.print(formattedRankResult);
     this.#outputView.print(formattedTotalReturn);
   }
 }
