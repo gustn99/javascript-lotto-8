@@ -1,5 +1,9 @@
 import { Random } from "@woowacourse/mission-utils";
-import { RANK, RANK_TO_PRIZE_MAP } from "../constants/rankToPrizeMap.js";
+import {
+  RANK,
+  RANK_TO_MATCH_STRING_MAP,
+  RANK_TO_PRIZE_MAP,
+} from "../constants/rankToPrizeMap.js";
 import { PURCHASE_UNIT } from "../constants/unit.js";
 import {
   LOTTO_MAX_VALUE,
@@ -44,6 +48,17 @@ class Lottos {
 
     const totalReturn = (this.#totalPrize / purchaseAmount).toFixed(2);
     return totalReturn;
+  }
+
+  formatResult() {
+    return Object.entries(RANK_TO_PRIZE_MAP)
+      .map(
+        ([rank, prize]) =>
+          `${RANK_TO_MATCH_STRING_MAP[rank]} (${prize.toLocaleString()}원) - ${
+            this.#ranks[rank]
+          }개`
+      )
+      .join("\n");
   }
 
   format() {

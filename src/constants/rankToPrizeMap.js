@@ -13,5 +13,12 @@ export const RANK_TO_PRIZE_MAP = {
   [RANK["3RD"]]: 1500000,
   [RANK["4TH"]]: 50000,
   [RANK["5TH"]]: 5000,
-  [RANK["ETC"]]: 0,
+};
+
+export const RANK_TO_MATCH_STRING_MAP = {
+  [RANK["1ST"]]: "6개 일치",
+  [RANK["2ND"]]: "5개 일치, 보너스 볼 일치",
+  [RANK["3RD"]]: "5개 일치",
+  [RANK["4TH"]]: "4개 일치",
+  [RANK["5TH"]]: "3개 일치",
 };
