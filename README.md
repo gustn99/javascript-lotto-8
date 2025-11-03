@@ -36,3 +36,29 @@
 6. 랜덤 생성된 로또 번호들마다 당첨 여부 확인
 7. 총 수익률 계산
 8. 당첨 통계(1-5등 개수, 총 수익률) 출력
+
+## 폴더 구조
+
+```bash
+src
+├─ constants
+│ ├─ errorMessages.js
+│ ├─ inputMessages.js
+│ ├─ lotto.js
+│ ├─ rank.js
+│ └─ unit.js
+├─ controller
+│ └─ LottoController.js    // 전체 로또 추첨 흐름 제어
+├─ domains
+│ └─ Lotto.js              // 단일 로또 상태 관리
+├─ models
+│ ├─ DrawnNumbers.js       // 당첨 번호 + 보너스 번호 상태 관리
+│ ├─ LottoDrawer.js        // DrawnNumbers -> Lottos 상태 업데이트
+│ └─ Lottos.js             // 사용자 로또 번호 상태 관리
+├─ utils
+│ ├─ error.js
+│ └─ Formatter.js          // 출력문 형식 관리
+└─ view
+  ├─ InputView.js          // 사용자 입력 처리
+  └─ OutputView.js         // 출력 처리
+```
