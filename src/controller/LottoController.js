@@ -18,16 +18,34 @@ class LottoController {
   }
 
   async run() {
+    const purchaseCount = await this.#readPurchaseCount();
+    const lottos = new Lottos(purchaseCount);
+    this.#printInputResult(purchaseCount, lottos);
+
+    const { winningNumber, bonusNumber } = await this.#readDrawnNumbers();
+    const lottoDrawer = new LottoDrawer(winningNumber, bonusNumber);
+    lottoDrawer.run(lottos);
+
+    this.#printResult(lottos);
+  }
+
+  async #readPurchaseCount() {
     const purchaseAmount = await this.#inputView.readLineAsync(
       INPUT_MESSAGES.PURCHASE_AMOUNT
     );
     this.#validatePurchaseAmount(purchaseAmount);
 
     const purchaseCount = purchaseAmount / PURCHASE_UNIT;
-    const lottos = new Lottos(purchaseCount);
-    this.#printPurchaseCount(purchaseCount);
-    this.#printLottos(lottos);
+    return purchaseCount;
+  }
 
+  #validatePurchaseAmount(purchaseAmount) {
+    if (purchaseAmount % PURCHASE_UNIT !== 0) {
+      throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
+    }
+  }
+
+  async #readDrawnNumbers() {
     const winningNumber = await this.#inputView.readLineAsync(
       INPUT_MESSAGES.WINNING_NUMBER
     );
@@ -35,15 +53,12 @@ class LottoController {
       INPUT_MESSAGES.BONUS_NUMBER
     );
 
-    const lottoDrawer = new LottoDrawer(winningNumber, bonusNumber);
-    lottoDrawer.run(lottos);
-    this.#printResult(lottos);
+    return { winningNumber, bonusNumber };
   }
 
-  #validatePurchaseAmount(purchaseAmount) {
-    if (purchaseAmount % PURCHASE_UNIT !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
-    }
+  #printInputResult(purchaseCount, lottos) {
+    this.#printPurchaseCount(purchaseCount);
+    this.#printLottos(lottos);
   }
 
   #printPurchaseCount(purchaseCount) {
